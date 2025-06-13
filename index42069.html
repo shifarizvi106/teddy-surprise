@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome 💘</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Times New Roman', serif;
+      text-align: center;
+      margin-top: 150px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #d63384;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ff69b4;
+    }
+  </style>
+</head>
+
+<audio id="bg-music" loop>
+  <source src="backgroundmusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+<script>
+  const bgMusic = document.getElementById("bg-music");
+
+  // Play music after first interaction
+  document.addEventListener("click", () => {
+    bgMusic.play().catch(() => {
+      console.log("Autoplay blocked, but will play on next interaction.");
+    });
+  });
+</script>
+
+<body>
+  <h1>Are you ready, handsome? 😉</h1>
+  <input type="text" id="nameInput" placeholder="Your name">
+  <input type="password" id="passInput" placeholder="Password">
+  <br>
+  <button onclick="checkLogin()">Enter</button>
+
+  <script>
+    function checkLogin() {
+      const password = document.getElementById("passInput").value;
+      if (password === "pookie69") {
+        window.location.href = "teddy.html";
+      } else {
+        alert("Wrong password 😔");
+      }
+    }
+  </script>
+</body>
+</html>

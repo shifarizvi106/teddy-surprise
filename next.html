@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Surprise 💘</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Times New Roman', serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ffc0cb;
+      margin-bottom: 60px; /* more space below the text */
+    }
+
+    .heart {
+      width: 150px;
+      height: 150px;
+      background-color: #ff4d6d;
+      position: relative;
+      margin: 0 auto;
+      transform: rotate(-45deg);
+      animation: pulse 2s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 150px;
+      height: 150px;
+      background-color: #ff4d6d;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -75px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 75px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: rotate(-45deg) scale(1);
+        box-shadow: 0 0 10px #ff4d6d, 0 0 30px #ff4d6d;
+      }
+      50% {
+        transform: rotate(-45deg) scale(1.1);
+        box-shadow: 0 0 20px #ff4d6d, 0 0 60px #ff4d6d;
+      }
+      100% {
+        transform: rotate(-45deg) scale(1);
+        box-shadow: 0 0 10px #ff4d6d, 0 0 30px #ff4d6d;
+      }
+    }
+
+    .countdown-box {
+      margin-top: 80px;
+      padding: 20px;
+      border: 2px solid #ffb6c1;
+      border-radius: 12px;
+      display: inline-block;
+      font-size: 2rem;
+      background: rgba(255, 182, 193, 0.1);
+      box-shadow: 0 0 10px #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+  <source src="backgroundmusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+<script>
+  const bgMusic = document.getElementById("bg-music");
+
+  // Play music after first interaction
+  document.addEventListener("click", () => {
+    bgMusic.play().catch(() => {
+      console.log("Autoplay blocked, but will play on next interaction.");
+    });
+  });
+</script>
+
+
+  <h1>Call me ;)</h1>
+
+  <div class="heart"></div>
+
+  <div class="countdown-box" id="timer">5:00</div>
+
+  <script>
+    let time = 300;
+    const timer = document.getElementById('timer');
+
+    setInterval(() => {
+      if (time <= 0) {
+        timer.textContent = "Time's up, Romeo!";
+        return;
+      }
+      time--;
+      let mins = Math.floor(time / 60);
+      let secs = time % 60;
+      timer.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }, 1000);
+  </script>
+</body>
+</html>
