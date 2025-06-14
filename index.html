@@ -1,63 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome 💘</title>
+  <meta charset="UTF-8" />
+  <title>For You 💌</title>
   <style>
     body {
-      background-color: #fff0f5;
+      margin: 0;
+      background: black;
       font-family: 'Times New Roman', serif;
+      overflow: hidden;
+      color: white;
       text-align: center;
-      margin-top: 150px;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: float 7s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding-top: 50px;
+    }
+
+    img {
+      width: 250px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2rem;
-      color: #d63384;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
 
-    input, button {
-      padding: 10px;
-      margin: 10px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ff69b4;
+    p {
+      font-size: 1.2rem;
+      color: #ffc0cb;
+    }
+
+    .counter {
+      margin-top: 40px;
     }
   </style>
 </head>
-
-<audio id="bg-music" loop>
-  <source src="backgroundmusic.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
-</audio>
-
-<script>
-  const bgMusic = document.getElementById("bg-music");
-
-  // Play music after first interaction
-  document.addEventListener("click", () => {
-    bgMusic.play().catch(() => {
-      console.log("Autoplay blocked, but will play on next interaction.");
-    });
-  });
-</script>
-
 <body>
-  <h1>Are you ready, handsome? 😉</h1>
-  <input type="text" id="nameInput" placeholder="Your name">
-  <input type="password" id="passInput" placeholder="Password">
-  <br>
-  <button onclick="checkLogin()">Enter</button>
+  <audio autoplay loop>
+    <source src="backgroundmusic.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 
-  <script>
-    function checkLogin() {
-      const password = document.getElementById("passInput").value;
-      if (password === "pookie69") {
-        window.location.href = "teddy.html";
-      } else {
-        alert("Wrong password 😔");
+  <div class="hearts">
+    <!-- Generating 30 hearts -->
+    <script>
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+        document.body.querySelector(".hearts").appendChild(heart);
       }
-    }
-  </script>
+    </script>
+  </div>
+
+  <div class="content">
+    <img src="cutie-png.png" alt="Teddy Bear" />
+    <h1>I like You.</h1>
+    <p><sub>Yatharth, I am down bad.</sub></p>
+
+    <div class="counter">
+      <img src="https://www.freecounterstat.com/count/4m6w6yo3ab/canvas/teddy" alt="visitor counter">
+    </div>
+  </div>
 </body>
 </html>
